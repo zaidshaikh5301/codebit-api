@@ -12,6 +12,10 @@ const options: swaggerJSDoc.Options = {
 
     servers: [
       {
+        url: "https://codebit-api.onrender.com",
+        description: "Production server",
+      },
+      {
         url: "http://localhost:5000",
         description: "Development server",
       },
@@ -79,7 +83,14 @@ const options: swaggerJSDoc.Options = {
             error: {
               type: "object",
               properties: {
-                code: { type: "string", enum: ["AUTH_REQUIRED", "INVALID_TOKEN", "TOKEN_EXPIRED"] },
+                code: {
+                  type: "string",
+                  enum: [
+                    "AUTH_REQUIRED",
+                    "INVALID_TOKEN",
+                    "TOKEN_EXPIRED",
+                  ],
+                },
                 message: { type: "string" },
                 requestId: { type: "string" },
               },
@@ -130,7 +141,10 @@ const options: swaggerJSDoc.Options = {
             error: {
               type: "object",
               properties: {
-                code: { type: "string", enum: ["CONFLICT", "DUPLICATE_RESOURCE"] },
+                code: {
+                  type: "string",
+                  enum: ["CONFLICT", "DUPLICATE_RESOURCE"],
+                },
                 message: { type: "string" },
                 requestId: { type: "string" },
               },
