@@ -17,7 +17,7 @@ const startServer = async (): Promise<void> => {
 
   setupSocketIO(server);
 
-  server.listen(env.port, () => {
+  server.listen(env.port, "0.0.0.0", () => {
     console.log(
       `Codebit API running on http://localhost:${env.port}`
     );
