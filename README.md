@@ -1,186 +1,138 @@
-# CodeBit
+# ⚡ CodeBit API
 
-> A modern developer collaboration platform for discovering projects, finding developers, collaborating with teams, managing tasks, communicating in real time, and connecting GitHub workflows.
+REST API and real-time backend for **CodeBit**, a developer collaboration platform where developers find projects, build teams, manage tasks and chat in real time.
 
-## 🚀 Overview
-
-CodeBit is a full-stack SaaS platform designed to help developers find projects, build teams, collaborate with other developers, and manage their development workflow from a single platform.
-
-Developers can create professional profiles, discover projects, apply to projects, accept or reject applicants, manage project members, assign tasks, communicate through discussions and real-time chat, and integrate GitHub repositories.
-
-The platform is designed with scalability, security, real-time collaboration, and a professional SaaS experience in mind.
-
----
+![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)
+![Socket.IO](https://img.shields.io/badge/Socket.IO-010101?logo=socketdotio&logoColor=white)
 
 ## ✨ Features
 
-### 🔐 Authentication & Security
-
-- User registration and login
-- JWT-based authentication
-- Access and refresh token support
-- Protected API routes
-- Password security
-- Authentication middleware
+### 🔐 Auth and security
+- JWT authentication with access and refresh tokens
 - Role-based access control
-- Request validation
-- Centralized error handling
+- Request validation and centralized error handling
 - Request ID tracking
-- API rate limiting
-- CORS protection
-- Helmet security headers
+- Rate limiting, CORS and Helmet security headers
 
-### 👨‍💻 Developer Profiles
+### 👨‍💻 Developers
+- Profiles with image upload (Cloudinary)
+- Developer discovery and search, with skills
 
-- Create developer profiles
-- Update profile information
-- Upload profile images
-- Developer discovery
-- Search developers
-- Developer skills
-- Developer project information
+### 📁 Projects
+- Create, update, delete and discover projects
+- Ownership, members and status management
 
-### 📁 Project Management
+### 📨 Applications and team
+- Apply to projects
+- Owners accept or reject applicants
+- Member management
 
-- Create projects
-- Update projects
-- Delete projects
-- View project details
-- Discover available projects
-- Project ownership
-- Project members
-- Project status management
-- Project technology information
+### ✅ Tasks
+- Priorities: Epic, High, Medium, Low
+- Statuses: Pending, In Progress, Completed
+- Filter by priority, update and delete
 
-### 📨 Project Applications
+### 💬 Real time
+- Project discussions and rooms (Socket.IO)
+- Message history and typing indicators
+- Live notifications for application and project activity
 
-Developers can apply to projects they are interested in.
+### 🐙 GitHub integration
+- Connect a GitHub account and link repositories to projects
 
-Project owners can:
+## 🛠️ Tech Stack
 
-- View applications
-- Accept applicants
-- Reject applicants
-- Manage accepted members
+| Area | Technology |
+| --- | --- |
+| Runtime | Node.js |
+| Framework | Express.js |
+| Language | TypeScript |
+| Database | MongoDB |
+| Real time | Socket.IO |
+| Auth | JWT |
+| Uploads | Cloudinary |
+| Integrations | GitHub API |
+| API docs | Swagger / OpenAPI |
+| Testing | Vitest |
 
-Application status is tracked throughout the workflow.
+## 🏗️ Architecture
 
-### 👥 Team & Member Management
+```
+CodeBit Frontend (React + TypeScript)
+        │  REST + WebSocket
+        ▼
+Express API ── Controllers → Services → Models ──► MongoDB
+        │
+        ├── Socket.IO (rooms, chat, notifications)
+        ├── Cloudinary (image uploads)
+        └── GitHub API
+```
 
-- View project members
-- Manage project members
-- Project owner controls
-- Member roles
-- Collaboration between team members
+## ⚙️ Getting Started
 
-### ✅ Task Management
+### Prerequisites
 
-Project teams can manage development tasks.
+- Node.js 18+
+- MongoDB (local or Atlas)
+- Cloudinary account (for uploads)
 
-Supported task priorities:
+### Installation
 
-- Epic
-- High
-- Medium
-- Low
+```bash
+git clone https://github.com/zaidshaikh5301/codebit-api.git
+cd codebit-api
+npm install
+cp .env.example .env
+```
 
-Supported task statuses:
+Fill in `.env` using `.env.example` as the reference (database URI, JWT secrets, Cloudinary and GitHub credentials, client URL).
 
-- Pending
-- In Progress
-- Completed
+### Run
 
-Task functionality includes:
+```bash
+npm run dev      # development
+npm run build    # compile TypeScript
+npm start        # run compiled build
+npm test         # run Vitest tests
+```
 
-- Create tasks
-- View tasks
-- Filter tasks by priority
-- Update task details
-- Change task status
-- Delete tasks
+> Check the `scripts` section of `package.json` and adjust the commands above if your script names differ.
 
-### 💬 Discussions & Real-Time Chat
+## 📚 API Documentation
 
-CodeBit supports real-time team communication using Socket.IO.
+With the server running, open the Swagger docs at `http://localhost:<PORT>/api-docs`.
 
-Features include:
+> Replace `/api-docs` with the route you used for Swagger.
 
-- Project discussions
-- Real-time messaging
-- Project rooms
-- Message history
-- Typing indicators
-- Real-time message broadcasting
-- Team collaboration
+## 📁 Project Structure
 
-### 🔔 Notifications
+```
+codebit-api/
+├── src/
+├── .env.example
+├── package.json
+├── tsconfig.json
+└── vitest.config.ts
+```
 
-Users can receive notifications for important project activities such as:
+## 🔒 Security
 
-- Application updates
-- Application acceptance/rejection
-- Project activity
-- Team activity
-- Collaboration events
+- Never commit `.env` or any secrets
+- Use strong, unique JWT secrets in production
+- Restrict CORS to your frontend domain in production
 
-### 🐙 GitHub Integration
+## 🔮 Roadmap
 
-CodeBit is designed to integrate GitHub into the project workflow.
+- [ ] Production deployment
+- [ ] Expanded test coverage
+- [ ] CI/CD pipeline
+- [ ] Project analytics and progress tracking
 
-Planned/available capabilities include:
+## 👨‍💻 Author
 
-- Connect GitHub accounts
-- Link repositories to projects
-- GitHub repository information
-- Development workflow integration
-- Repository-based project collaboration
+**Zaid Shaikh**
 
-### 📊 Productivity
-
-The platform is designed to provide developers with tools for managing their development workflow and monitoring project progress.
-
----
-
-# 🏗️ Architecture
-
-CodeBit follows a modular full-stack architecture.
-
-```text
-┌──────────────────────────────┐
-│          Frontend            │
-│                              │
-│ React + TypeScript           │
-│ React Router                 │
-│ TanStack Query               │
-│ Axios                        │
-│ Responsive SaaS UI           │
-└──────────────┬───────────────┘
-               │
-               │ REST API
-               ▼
-┌──────────────────────────────┐
-│           Backend            │
-│                              │
-│ Node.js                      │
-│ Express.js                   │
-│ TypeScript                   │
-│ JWT Authentication           │
-│ Socket.IO                    │
-│ Swagger / OpenAPI            │
-└──────────────┬───────────────┘
-               │
-               ▼
-┌──────────────────────────────┐
-│           Database           │
-│                              │
-│ MongoDB                      │
-└──────────────────────────────┘
-
-               │
-               ▼
-┌──────────────────────────────┐
-│       External Services      │
-│                              │
-│ GitHub API                   │
-│ Cloudinary                   │
-└──────────────────────────────┘
+[GitHub](https://github.com/zaidshaikh5301) · [LinkedIn](https://www.linkedin.com/in/zaid-shaikh-823961345/)
